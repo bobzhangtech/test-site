@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npm --version)",
+      "Bash(npx --version)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Read(//home/zhang/.nvm/**)",
+      "Read(//home/zhang/**)",
+      "Bash(curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh)",
+      "Bash(bash)",
+      "Bash(cp -r /tmp/lion-portfolio/* /mnt/c/Users/zhang/Desktop/coding-projects/claude-code-projects/nostalgic-personal-portfolio/)",
+      "Bash(cp /tmp/lion-portfolio/.gitignore /mnt/c/Users/zhang/Desktop/coding-projects/claude-code-projects/nostalgic-personal-portfolio/)",
+      "Bash(mkdir -p ~/projects)",
+      "Bash(cp -r /mnt/c/Users/zhang/Desktop/coding-projects/claude-code-projects/nostalgic-personal-portfolio/* ~/projects/nostalgic-personal-portfolio/)",
+      "Bash(cp -r /mnt/c/Users/zhang/Desktop/coding-projects/claude-code-projects/nostalgic-personal-portfolio/.claude ~/projects/nostalgic-personal-portfolio/)",
+      "Bash(cp /mnt/c/Users/zhang/Desktop/coding-projects/claude-code-projects/nostalgic-personal-portfolio/.gitignore ~/projects/nostalgic-personal-portfolio/)"
+    ]
+  }
+}
