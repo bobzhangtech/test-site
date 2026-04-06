@@ -98,8 +98,8 @@ export default function Dock() {
               {/* Tooltip */}
               {isHovered && (
                 <div
-                  className="absolute bottom-full left-1/2 -translate-x-1/2 pointer-events-none"
-                  style={{ marginBottom: '6px' }}
+                  className="absolute bottom-full left-1/2 -translate-x-1/2 pointer-events-none z-10"
+                  style={{ marginBottom: '16px' }}
                 >
                   <div className="bg-[rgba(30,30,30,0.85)] text-white text-[11px] px-2.5 py-1 rounded-md whitespace-nowrap backdrop-blur-sm">
                     {item.label}
