@@ -8,16 +8,19 @@ import WindowManager from './components/WindowManager'
 export default function App() {
   const booted = useWindowStore((s) => s.booted)
 
-  if (!booted) {
-    return <BootScreen />
-  }
-
   return (
-    <div className="relative w-screen h-screen overflow-hidden">
-      <Desktop />
-      <MenuBar />
-      <WindowManager />
-      <Dock />
-    </div>
+    <>
+      <div className="relative w-screen h-screen overflow-hidden">
+        <Desktop />
+        {booted && (
+          <>
+            <MenuBar />
+            <WindowManager />
+            <Dock />
+          </>
+        )}
+      </div>
+      {!booted && <BootScreen />}
+    </>
   )
 }
