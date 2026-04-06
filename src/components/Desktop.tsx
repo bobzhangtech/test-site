@@ -12,7 +12,6 @@ const DESKTOP_ITEMS: DesktopItem[] = [
   { appId: 'finder', label: 'Projects', icon: '📁' },
   { appId: 'safari', label: 'Links', icon: '🌐' },
   { appId: 'textedit', label: 'About Me', icon: '📝' },
-  { appId: 'mail', label: 'Contact', icon: '✉️' },
   { appId: 'preview', label: 'Resume', icon: '📄' },
   { appId: 'terminal', label: 'Terminal', icon: '🖥️' },
 ]

@@ -1,4 +1,4 @@
-import { ABOUT_ME, OWNER_NAME } from '../data/portfolio'
+import { ABOUT_ME } from '../data/portfolio'
 
 export default function TextEditApp() {
   return (
@@ -28,15 +28,17 @@ export default function TextEditApp() {
       >
         <div className="p-8 max-w-lg mx-auto">
           <h1 className="text-[22px] font-normal text-[#222] mb-4">
-            About {OWNER_NAME}
+            About Me
           </h1>
-          {ABOUT_ME.trim().split('\n\n').map((paragraph, i) => (
-            <p
-              key={i}
-              className="text-[13px] text-[#333] leading-[24px] mb-4"
-            >
-              {paragraph.trim()}
-            </p>
+          {ABOUT_ME.trim().split('\n\n').map((paragraph, i, arr) => (
+            <div key={i}>
+              <p className="text-[13px] text-[#333] leading-[24px]">
+                {paragraph.trim()}
+              </p>
+              {i < arr.length - 1 && (
+                <div className="h-[24px]" />
+              )}
+            </div>
           ))}
         </div>
       </div>

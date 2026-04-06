@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export type AppId = 'finder' | 'safari' | 'textedit' | 'mail' | 'preview' | 'terminal'
+export type AppId = 'finder' | 'safari' | 'textedit' | 'preview' | 'terminal'
 
 export interface WindowState {
   id: string
@@ -20,21 +20,18 @@ const APP_DEFAULTS: Record<AppId, { title: string; width: number; height: number
   finder: { title: 'Finder — Projects', width: 780, height: 500 },
   safari: { title: 'Safari — Links', width: 800, height: 550 },
   textedit: { title: 'About Me — TextEdit', width: 600, height: 450 },
-  mail: { title: 'Mail — Contact', width: 650, height: 480 },
   preview: { title: 'Resume — Preview', width: 650, height: 550 },
   terminal: { title: 'Terminal', width: 600, height: 400 },
 }
 
 function getDefaultPosition(appId: AppId): { x: number; y: number } {
-  const offsets: Record<AppId, { x: number; y: number }> = {
-    finder: { x: 80, y: 60 },
-    safari: { x: 120, y: 80 },
-    textedit: { x: 160, y: 100 },
-    mail: { x: 200, y: 70 },
-    preview: { x: 140, y: 90 },
-    terminal: { x: 180, y: 120 },
-  }
-  return offsets[appId]
+  const defaults = APP_DEFAULTS[appId]
+  const menuBarHeight = 25
+  const dockHeight = 70
+  const usableHeight = window.innerHeight - menuBarHeight - dockHeight
+  const x = Math.max(0, (window.innerWidth - defaults.width) / 2)
+  const y = Math.max(0, menuBarHeight + (usableHeight - defaults.height) / 2)
+  return { x, y }
 }
 
 interface WindowStore {

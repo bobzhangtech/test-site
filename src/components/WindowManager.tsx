@@ -3,7 +3,6 @@ import Window from './Window'
 import FinderApp from '../apps/FinderApp'
 import SafariApp from '../apps/SafariApp'
 import TextEditApp from '../apps/TextEditApp'
-import MailApp from '../apps/MailApp'
 import PreviewApp from '../apps/PreviewApp'
 import TerminalApp from '../apps/TerminalApp'
 
@@ -11,7 +10,6 @@ const APP_COMPONENTS: Record<string, React.ComponentType> = {
   finder: FinderApp,
   safari: SafariApp,
   textedit: TextEditApp,
-  mail: MailApp,
   preview: PreviewApp,
   terminal: TerminalApp,
 }

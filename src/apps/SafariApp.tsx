@@ -3,7 +3,7 @@ import { SOCIAL_LINKS } from '../data/portfolio'
 const BOOKMARKS = [
   { name: 'GitHub', url: SOCIAL_LINKS.find((l) => l.name === 'GitHub')?.url ?? '#', icon: '🐙' },
   { name: 'LinkedIn', url: SOCIAL_LINKS.find((l) => l.name === 'LinkedIn')?.url ?? '#', icon: '💼' },
-  { name: 'Email', url: SOCIAL_LINKS.find((l) => l.name === 'Email')?.url ?? '#', icon: '📧' },
+  { name: 'X', url: SOCIAL_LINKS.find((l) => l.name === 'X')?.url ?? '#', icon: '𝕏' },
 ]
 
 export default function SafariApp() {
@@ -56,7 +56,7 @@ export default function SafariApp() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 p-3 rounded-lg bg-white border border-[#e0e0e0] hover:border-[#3b82f6] hover:shadow-sm transition-all no-underline cursor-default"
               >
-                <span className="text-[28px]">{link.icon}</span>
+                <span className="text-[28px] w-[28px] h-[28px] flex items-center justify-center">{link.icon}</span>
                 <div>
                   <div className="text-[14px] font-medium text-[#333]">{link.name}</div>
                   <div className="text-[11px] text-[#999]">{link.url}</div>

@@ -23,9 +23,9 @@ export const OWNER_NAME = 'Bob'
 export const ABOUT_ME = `
 Hi, I'm Bob, welcome to my personal portfolio! I'm a programmer and software developer currently studying Computer Engineering at Queen's University.
 
-I enjoy building projects that solve real problems, from interactive web experiences to CLI tools powered by AI. I work with Python, Java, and modern web technologies, and I'm always picking up new skills along the way.
+I enjoy building projects that solve real problems, and my ultimate goal in life is to create a software or hardware solution that benefits humanity. I work with Python, Java, and modern web technologies, and I'm always picking up new skills along the way.
 
-I'm also self-employed, taking on software projects independently. Whether it's a full-stack web app or a data-driven command-line tool, I love turning ideas into working software.
+I'm also currently self-employed, coming up with and building software solutions in hopes of making them profitable in order to sustain myself and my dreams, and I aspire to found my own tech startup in the near future. Whether it's a full-stack web app or a software-as-a-service, I love turning ideas into working software.
 
 Feel free to explore around!
 `
@@ -38,7 +38,6 @@ export const PROJECTS: Project[] = [
     techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Zustand', 'Framer Motion'],
     category: 'web',
     githubUrl: 'https://github.com/bobzhangtech/personal-portfolio',
-    liveUrl: '#',
   },
   {
     id: 'project-2',
@@ -53,6 +52,7 @@ export const PROJECTS: Project[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   { name: 'GitHub', url: 'https://github.com/bobzhangtech', icon: 'github' },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/bob', icon: 'linkedin' },
+  { name: 'X', url: 'https://x.com/bobzhangtech', icon: 'x' },
   { name: 'Email', url: 'mailto:bob@example.com', icon: 'email' },
 ]
 

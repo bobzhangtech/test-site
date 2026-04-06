@@ -11,7 +11,6 @@ const DOCK_ITEMS: DockItem[] = [
   { appId: 'finder', label: 'Finder', icon: '📁' },
   { appId: 'safari', label: 'Safari', icon: '🧭' },
   { appId: 'textedit', label: 'TextEdit', icon: '📝' },
-  { appId: 'mail', label: 'Mail', icon: '✉️' },
   { appId: 'preview', label: 'Preview', icon: '📄' },
   { appId: 'terminal', label: 'Terminal', icon: '🖥️' },
 ]
