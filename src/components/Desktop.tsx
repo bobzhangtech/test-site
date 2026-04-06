@@ -130,7 +130,7 @@ export default function Desktop() {
 
       {/* Desktop icon grid */}
       <div
-        className="absolute top-8 right-6 z-[1] grid gap-2"
+        className="absolute top-14 right-6 z-[1] grid gap-2"
         style={{
           gridTemplateRows: 'repeat(auto-fill, 90px)',
           gridAutoFlow: 'column',
