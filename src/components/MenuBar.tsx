@@ -1,43 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useWindowStore } from '../store/windowStore'
 
-interface BatteryState {
-  level: number
-  charging: boolean
-}
-
 export default function MenuBar() {
   const activeWindowId = useWindowStore((s) => s.activeWindowId)
   const windows = useWindowStore((s) => s.windows)
   const [time, setTime] = useState(new Date())
-  const [battery, setBattery] = useState<BatteryState>({ level: 1, charging: false })
 
   // Clock — update every second so minute changes are instant
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000)
     return () => clearInterval(timer)
-  }, [])
-
-  // Battery API
-  useEffect(() => {
-    let batt: any = null
-    const update = () => {
-      if (batt) setBattery({ level: batt.level, charging: batt.charging })
-    }
-    if ('getBattery' in navigator) {
-      (navigator as any).getBattery().then((b: any) => {
-        batt = b
-        update()
-        b.addEventListener('levelchange', update)
-        b.addEventListener('chargingchange', update)
-      })
-    }
-    return () => {
-      if (batt) {
-        batt.removeEventListener('levelchange', update)
-        batt.removeEventListener('chargingchange', update)
-      }
-    }
   }, [])
 
   const activeWindow = windows.find((w) => w.id === activeWindowId)
@@ -55,8 +27,6 @@ export default function MenuBar() {
     day: 'numeric',
   })
 
-  const batteryPercent = Math.round(battery.level * 100)
-  const fillWidth = 17 * battery.level
 
   return (
     <div
@@ -93,10 +63,9 @@ export default function MenuBar() {
         <span className="opacity-70 cursor-default flex items-center gap-1">
           <svg width="20" height="12" viewBox="0 0 25 12" fill="none" stroke="currentColor" strokeWidth="1.2">
             <rect x="1" y="1" width="20" height="10" rx="2" />
-            <rect x="2.5" y="2.5" width={fillWidth} height="7" rx="1" fill="currentColor" opacity="0.5" />
+            <rect x="2.5" y="2.5" width="17" height="7" rx="1" fill="currentColor" opacity="0.5" />
             <rect x="22" y="3.5" width="2" height="5" rx="0.5" fill="currentColor" />
           </svg>
-          <span className="text-[10px]">{batteryPercent}%</span>
         </span>
         {/* Date & Time */}
         <span className="cursor-default">{formattedDate} {formattedTime}</span>

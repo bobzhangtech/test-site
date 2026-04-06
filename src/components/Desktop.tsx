@@ -36,7 +36,7 @@ export default function Desktop() {
   const [selection, setSelection] = useState<SelectionRect | null>(null)
   const desktopRef = useRef<HTMLDivElement>(null)
   const iconRefs = useRef<Map<string, HTMLDivElement>>(new Map())
-  const isDragging = useRef(false)
+  const [isDragging, setIsDragging] = useState(false)
 
   const getSelectionBox = useCallback((sel: SelectionRect) => {
     const left = Math.min(sel.startX, sel.currentX)
@@ -50,7 +50,7 @@ export default function Desktop() {
     // Only start selection from the desktop background itself
     if (e.target !== desktopRef.current) return
     e.preventDefault()
-    isDragging.current = false
+    setIsDragging(false)
     setSelection({
       startX: e.clientX,
       startY: e.clientY,
@@ -62,7 +62,7 @@ export default function Desktop() {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!selection) return
-      isDragging.current = true
+      setIsDragging(true)
       setSelection((prev) =>
         prev ? { ...prev, currentX: e.clientX, currentY: e.clientY } : null
       )
@@ -84,12 +84,12 @@ export default function Desktop() {
     }
 
     const handleMouseUp = () => {
-      if (selection && !isDragging.current) {
+      if (selection && !isDragging) {
         // Was a click, not a drag — clear selection
         setSelectedIds(new Set())
       }
       setSelection(null)
-      isDragging.current = false
+      setIsDragging(false)
     }
 
     window.addEventListener('mousemove', handleMouseMove)
@@ -98,9 +98,9 @@ export default function Desktop() {
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('mouseup', handleMouseUp)
     }
-  }, [selection, getSelectionBox])
+  }, [selection, isDragging, getSelectionBox])
 
-  const selectionBox = selection && isDragging.current ? getSelectionBox(selection) : null
+  const selectionBox = selection && isDragging ? getSelectionBox(selection) : null
 
   return (
     <div
