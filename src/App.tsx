@@ -12,13 +12,9 @@ export default function App() {
     <>
       <div className="relative w-screen h-screen overflow-hidden">
         <Desktop />
-        {booted && (
-          <>
-            <MenuBar />
-            <WindowManager />
-            <Dock />
-          </>
-        )}
+        <MenuBar />
+        {booted && <WindowManager />}
+        <Dock />
       </div>
       {!booted && <BootScreen />}
     </>
