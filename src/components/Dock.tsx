@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { useWindowStore, type AppId } from '../store/windowStore'
 
 interface DockItem {
@@ -20,32 +20,58 @@ const BASE_SIZE = 48
 const MAX_SIZE = 72
 const MAGNIFICATION_RANGE = 150
 
+function getIconSize(mouseX: number | null, index: number): number {
+  if (mouseX === null) return BASE_SIZE
+  const iconCenter = index * (BASE_SIZE + 8) + BASE_SIZE / 2 + 12
+  const distance = Math.abs(mouseX - iconCenter)
+  if (distance > MAGNIFICATION_RANGE) return BASE_SIZE
+  const scale = 1 + (MAX_SIZE - BASE_SIZE) / BASE_SIZE * (1 - distance / MAGNIFICATION_RANGE)
+  return BASE_SIZE * scale
+}
+
 export default function Dock() {
   const openWindow = useWindowStore((s) => s.openWindow)
   const windows = useWindowStore((s) => s.windows)
-  const [mouseX, setMouseX] = useState<number | null>(null)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const dockRef = useRef<HTMLDivElement>(null)
+  const iconEls = useRef<(HTMLDivElement | null)[]>([])
+  const rafId = useRef<number>(0)
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!dockRef.current) return
     const rect = dockRef.current.getBoundingClientRect()
-    setMouseX(e.clientX - rect.left)
+    const mx = e.clientX - rect.left
+
+    cancelAnimationFrame(rafId.current)
+    rafId.current = requestAnimationFrame(() => {
+      for (let i = 0; i < DOCK_ITEMS.length; i++) {
+        const el = iconEls.current[i]
+        if (!el) continue
+        const size = getIconSize(mx, i)
+        el.style.width = `${size}px`
+        el.style.height = `${size}px`
+        el.style.fontSize = `${size * 0.7}px`
+      }
+    })
   }, [])
 
   const handleMouseLeave = useCallback(() => {
-    setMouseX(null)
     setHoveredIndex(null)
+    cancelAnimationFrame(rafId.current)
+    rafId.current = requestAnimationFrame(() => {
+      for (let i = 0; i < DOCK_ITEMS.length; i++) {
+        const el = iconEls.current[i]
+        if (!el) continue
+        el.style.width = `${BASE_SIZE}px`
+        el.style.height = `${BASE_SIZE}px`
+        el.style.fontSize = `${BASE_SIZE * 0.7}px`
+      }
+    })
   }, [])
 
-  const getIconSize = (index: number): number => {
-    if (mouseX === null || !dockRef.current) return BASE_SIZE
-    const iconCenter = index * (BASE_SIZE + 8) + BASE_SIZE / 2 + 12
-    const distance = Math.abs(mouseX - iconCenter)
-    if (distance > MAGNIFICATION_RANGE) return BASE_SIZE
-    const scale = 1 + (MAX_SIZE - BASE_SIZE) / BASE_SIZE * (1 - distance / MAGNIFICATION_RANGE)
-    return BASE_SIZE * scale
-  }
+  useEffect(() => {
+    return () => cancelAnimationFrame(rafId.current)
+  }, [])
 
   return (
     <div className="fixed bottom-2 left-1/2 -translate-x-1/2 z-[8999]">
@@ -64,7 +90,6 @@ export default function Dock() {
         onMouseLeave={handleMouseLeave}
       >
         {DOCK_ITEMS.map((item, index) => {
-          const size = getIconSize(index)
           const isOpen = windows.some((w) => w.appId === item.appId && w.isOpen)
           const isHovered = hoveredIndex === index
 
@@ -75,7 +100,7 @@ export default function Dock() {
               onMouseEnter={() => setHoveredIndex(index)}
               onClick={() => openWindow(item.appId)}
             >
-              {/* Tooltip — positioned relative to this icon */}
+              {/* Tooltip */}
               {isHovered && (
                 <div
                   className="absolute bottom-full left-1/2 -translate-x-1/2 pointer-events-none"
@@ -87,11 +112,12 @@ export default function Dock() {
                 </div>
               )}
               <div
-                className="flex items-center justify-center select-none will-change-[width,height]"
+                ref={(el) => { iconEls.current[index] = el }}
+                className="flex items-center justify-center select-none"
                 style={{
-                  width: size,
-                  height: size,
-                  fontSize: size * 0.7,
+                  width: BASE_SIZE,
+                  height: BASE_SIZE,
+                  fontSize: BASE_SIZE * 0.7,
                 }}
               >
                 {item.icon}
