@@ -47,6 +47,7 @@ interface WindowStore {
   focusWindow: (id: string) => void
   updatePosition: (id: string, pos: { x: number; y: number }) => void
   updateSize: (id: string, size: { width: number; height: number }) => void
+  removeWindow: (id: string) => void
 }
 
 export const useWindowStore = create<WindowStore>((set, get) => ({
@@ -59,7 +60,7 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
 
   openWindow: (appId) => {
     const { windows, maxZIndex } = get()
-    const existing = windows.find((w) => w.appId === appId)
+    const existing = windows.find((w) => w.appId === appId && w.isOpen)
 
     if (existing) {
       if (existing.isMinimized) {
@@ -110,12 +111,14 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
 
   closeWindow: (id) => {
     const { windows } = get()
-    const remaining = windows.filter((w) => w.id !== id)
-    const topWindow = remaining
+    const updated = windows.map((w) =>
+      w.id === id ? { ...w, isOpen: false } : w
+    )
+    const topWindow = updated
       .filter((w) => w.isOpen && !w.isMinimized)
       .sort((a, b) => b.zIndex - a.zIndex)[0]
     set({
-      windows: remaining,
+      windows: updated,
       activeWindowId: topWindow?.id ?? null,
     })
   },
@@ -187,5 +190,10 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
         w.id === id ? { ...w, size } : w
       ),
     })
+  },
+
+  removeWindow: (id) => {
+    const { windows } = get()
+    set({ windows: windows.filter((w) => w.id !== id) })
   },
 }))

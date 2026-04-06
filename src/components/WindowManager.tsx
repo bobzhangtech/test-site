@@ -19,16 +19,14 @@ export default function WindowManager() {
 
   return (
     <div className="absolute inset-0 top-[25px] z-[100] pointer-events-none">
-      {windows
-        .filter((w) => w.isOpen && !w.isMinimized)
-        .map((w) => {
-          const AppComponent = APP_COMPONENTS[w.appId]
-          return (
-            <Window key={w.id} windowState={w}>
-              <AppComponent />
-            </Window>
-          )
-        })}
+      {windows.map((w) => {
+        const AppComponent = APP_COMPONENTS[w.appId]
+        return (
+          <Window key={w.id} windowState={w}>
+            <AppComponent />
+          </Window>
+        )
+      })}
     </div>
   )
 }
