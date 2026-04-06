@@ -34,10 +34,8 @@ function processCommand(cmd: string): string {
     case 'projects':
       return PROJECTS.map((p) => `  📁 ${p.name} — ${p.techStack.join(', ')}`).join('\n')
     case 'skills':
-      return `Languages:  TypeScript, JavaScript, Python, SQL, HTML/CSS
-Frameworks: React, Node.js, Express, Next.js
-Tools:      Git, Docker, AWS, Linux, CI/CD
-Databases:  PostgreSQL, MongoDB, Redis`
+      return `Languages:  Python, Java, JavaScript, HTML, CSS
+Tools:      Git`
     case 'contact':
       return SOCIAL_LINKS.map((l) => `  ${l.name}: ${l.url}`).join('\n')
     case 'clear':
@@ -63,7 +61,7 @@ Databases:  PostgreSQL, MongoDB, Redis`
       }
       return `cat: ${parts[1] || ''}: No such file or directory`
     case 'neofetch':
-      return `       .:'          visitor@bob-portfolio
+      return `       .:'          visitor@bobzhang
    _ :'_           --------------------------
 .'\`_\`-'_\`\`.        OS: Mac OS X Lion (Web Edition)
 :________.-'        Shell: portfolio-sh 1.0
@@ -126,7 +124,7 @@ export default function TerminalApp() {
               <span>
                 <span className="text-[#5bef5b]">visitor</span>
                 <span className="text-[#888]">@</span>
-                <span className="text-[#6bb5ff]">bob-portfolio</span>
+                <span className="text-[#6bb5ff]">bobzhang</span>
                 <span className="text-[#888]"> ~ % </span>
                 <span className="text-white">{line.text}</span>
               </span>
@@ -141,7 +139,7 @@ export default function TerminalApp() {
           <span>
             <span className="text-[#5bef5b]">visitor</span>
             <span className="text-[#888]">@</span>
-            <span className="text-[#6bb5ff]">bob-portfolio</span>
+            <span className="text-[#6bb5ff]">bobzhang</span>
             <span className="text-[#888]"> ~ % </span>
           </span>
           <input

@@ -19,7 +19,7 @@ export default function SafariApp() {
           <span className="text-[14px] text-[#999] cursor-default">▶</span>
         </div>
         <div className="flex-1 h-[22px] rounded bg-white border border-[#c8c8c8] px-2 flex items-center">
-          <span className="text-[12px] text-[#999] truncate">bob-portfolio.dev/links</span>
+          <span className="text-[12px] text-[#999] truncate">bobzhang.dev/links</span>
         </div>
       </div>
 
