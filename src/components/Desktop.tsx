@@ -107,7 +107,7 @@ export default function Desktop() {
       ref={desktopRef}
       className="absolute inset-0 bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `url('/wallpaper.jpg')`,
+        backgroundImage: `url('${import.meta.env.BASE_URL}wallpaper.jpg')`,
         backgroundColor: '#2b1055',
       }}
       onMouseDown={handleMouseDown}
