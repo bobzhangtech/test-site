@@ -17,16 +17,15 @@ const DOCK_ITEMS: DockItem[] = [
 ]
 
 const BASE_SIZE = 48
-const MAX_SIZE = 72
+const MAX_SCALE = 1.5
 const MAGNIFICATION_RANGE = 150
 
-function getIconSize(mouseX: number | null, index: number): number {
-  if (mouseX === null) return BASE_SIZE
+function getScale(mouseX: number | null, index: number): number {
+  if (mouseX === null) return 1
   const iconCenter = index * (BASE_SIZE + 8) + BASE_SIZE / 2 + 12
   const distance = Math.abs(mouseX - iconCenter)
-  if (distance > MAGNIFICATION_RANGE) return BASE_SIZE
-  const scale = 1 + (MAX_SIZE - BASE_SIZE) / BASE_SIZE * (1 - distance / MAGNIFICATION_RANGE)
-  return BASE_SIZE * scale
+  if (distance > MAGNIFICATION_RANGE) return 1
+  return 1 + (MAX_SCALE - 1) * (1 - distance / MAGNIFICATION_RANGE)
 }
 
 export default function Dock() {
@@ -47,10 +46,8 @@ export default function Dock() {
       for (let i = 0; i < DOCK_ITEMS.length; i++) {
         const el = iconEls.current[i]
         if (!el) continue
-        const size = getIconSize(mx, i)
-        el.style.width = `${size}px`
-        el.style.height = `${size}px`
-        el.style.fontSize = `${size * 0.7}px`
+        const scale = getScale(mx, i)
+        el.style.transform = `scale(${scale})`
       }
     })
   }, [])
@@ -62,9 +59,7 @@ export default function Dock() {
       for (let i = 0; i < DOCK_ITEMS.length; i++) {
         const el = iconEls.current[i]
         if (!el) continue
-        el.style.width = `${BASE_SIZE}px`
-        el.style.height = `${BASE_SIZE}px`
-        el.style.fontSize = `${BASE_SIZE * 0.7}px`
+        el.style.transform = 'scale(1)'
       }
     })
   }, [])
@@ -118,6 +113,8 @@ export default function Dock() {
                   width: BASE_SIZE,
                   height: BASE_SIZE,
                   fontSize: BASE_SIZE * 0.7,
+                  transformOrigin: 'bottom center',
+                  willChange: 'transform',
                 }}
               >
                 {item.icon}
