@@ -44,7 +44,7 @@ export default function Dock() {
     const distance = Math.abs(mouseX - iconCenter)
     if (distance > MAGNIFICATION_RANGE) return BASE_SIZE
     const scale = 1 + (MAX_SIZE - BASE_SIZE) / BASE_SIZE * (1 - distance / MAGNIFICATION_RANGE)
-    return Math.round(BASE_SIZE * scale)
+    return BASE_SIZE * scale
   }
 
   return (
@@ -87,7 +87,7 @@ export default function Dock() {
                 </div>
               )}
               <div
-                className="transition-[width,height] duration-100 ease-out flex items-center justify-center select-none"
+                className="flex items-center justify-center select-none will-change-[width,height]"
                 style={{
                   width: size,
                   height: size,
