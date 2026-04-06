@@ -121,7 +121,7 @@ export default function Dock() {
               </div>
               {/* Open indicator dot */}
               <div
-                className={`w-1 h-1 rounded-full mb-0.5 transition-opacity ${isOpen ? 'bg-white/80 opacity-100' : 'opacity-0'}`}
+                className={`w-1 h-1 rounded-full mb-0.5 ${isOpen ? 'bg-white/80' : 'bg-transparent'}`}
               />
             </div>
           )

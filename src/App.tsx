@@ -10,19 +10,28 @@ export default function App() {
 
   return (
     <>
-      {/* Mobile message */}
-      <div className="md:hidden fixed inset-0 z-[99999] flex flex-col items-center justify-center px-8 text-center"
+      <style>{`
+        .small-screen-msg { display: none; }
+        .desktop-ui { display: block; }
+        @media (max-width: 767px), (max-height: 499px) {
+          .small-screen-msg { display: flex; }
+          .desktop-ui { display: none; }
+        }
+      `}</style>
+
+      {/* Small screen message — shown when width < 768px OR height < 500px */}
+      <div className="small-screen-msg fixed inset-0 z-[99999] flex-col items-center justify-center px-8 text-center"
         style={{ background: 'linear-gradient(135deg, #2b1055 0%, #1a0a2e 100%)' }}
       >
         <div className="text-5xl mb-6">🖥️</div>
         <h1 className="text-white text-xl font-semibold mb-3">Bob's Portfolio</h1>
         <p className="text-white/70 text-sm leading-relaxed max-w-xs">
-          This site is best experienced on a desktop computer. Please visit on a larger screen to explore the full interactive experience.
+          This site is best experienced in a larger window. If you're on mobile, please visit on a desktop computer. Otherwise, try resizing your browser window.
         </p>
       </div>
 
       {/* Desktop UI */}
-      <div className="relative w-screen h-screen overflow-hidden hidden md:block">
+      <div className="desktop-ui relative w-screen h-screen overflow-hidden">
         <Desktop />
         <MenuBar />
         {booted && <WindowManager />}
