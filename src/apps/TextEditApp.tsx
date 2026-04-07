@@ -1,6 +1,23 @@
+import { useRef, useEffect } from 'react'
 import { ABOUT_ME } from '../data/portfolio'
+import { useWindowStore } from '../store/windowStore'
 
-export default function TextEditApp() {
+export default function TextEditApp({ windowId }: { windowId?: string }) {
+  const contentRef = useRef<HTMLDivElement>(null)
+  const updateSize = useWindowStore((s) => s.updateSize)
+
+  useEffect(() => {
+    if (!contentRef.current || !windowId) return
+    const contentHeight = contentRef.current.scrollHeight
+    const titleBar = 22
+    const toolbar = 30
+    const menuBarHeight = 25
+    const dockHeight = 70
+    const maxHeight = window.innerHeight - menuBarHeight - dockHeight
+    const idealHeight = Math.min(contentHeight + titleBar + toolbar, maxHeight)
+    updateSize(windowId, { width: 600, height: idealHeight })
+  }, [windowId, updateSize])
+
   return (
     <div className="flex flex-col h-full text-[13px]">
       {/* Toolbar */}
@@ -17,6 +34,7 @@ export default function TextEditApp() {
 
       {/* Document area */}
       <div
+        ref={contentRef}
         className="flex-1 overflow-y-auto"
         style={{
           background: `
@@ -24,6 +42,7 @@ export default function TextEditApp() {
             linear-gradient(#fefefe 0%, #fefefe 100%)
           `,
           backgroundSize: '100% 24px',
+          backgroundAttachment: 'local',
         }}
       >
         <div className="px-8 py-[24px] max-w-lg mx-auto">

@@ -12,7 +12,7 @@ export default function PreviewApp() {
       </div>
 
       {/* Document viewer */}
-      <div className="flex-1 overflow-y-auto bg-[#525252] p-6 flex justify-center">
+      <div className="flex-1 overflow-y-auto bg-[#525252] p-6 flex justify-center items-start">
         {/* Page */}
         <div
           className="bg-white shadow-lg w-full max-w-[540px]"

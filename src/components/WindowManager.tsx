@@ -6,7 +6,7 @@ import TextEditApp from '../apps/TextEditApp'
 import PreviewApp from '../apps/PreviewApp'
 import TerminalApp from '../apps/TerminalApp'
 
-const APP_COMPONENTS: Record<string, React.ComponentType> = {
+const APP_COMPONENTS: Record<string, React.ComponentType<{ windowId?: string }>> = {
   finder: FinderApp,
   safari: SafariApp,
   textedit: TextEditApp,
@@ -23,7 +23,7 @@ export default function WindowManager() {
         const AppComponent = APP_COMPONENTS[w.appId]
         return (
           <Window key={w.id} windowState={w}>
-            <AppComponent />
+            <AppComponent windowId={w.id} />
           </Window>
         )
       })}

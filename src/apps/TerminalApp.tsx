@@ -156,7 +156,7 @@ export default function TerminalApp() {
             <span className="text-[#5bef5b]">visitor</span>
             <span className="text-[#888]">@</span>
             <span className="text-[#6bb5ff]">bobzhang</span>
-            <span className="text-[#888]"> ~ % </span>
+            <span className="text-[#888]"> ~ %&nbsp;</span>
           </span>
           <input
             ref={inputRef}
