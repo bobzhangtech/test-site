@@ -26,8 +26,8 @@ export default function TextEditApp() {
           backgroundSize: '100% 24px',
         }}
       >
-        <div className="p-8 max-w-lg mx-auto">
-          <h1 className="text-[22px] font-normal text-[#222] mb-4">
+        <div className="px-8 py-[24px] max-w-lg mx-auto">
+          <h1 className="text-[22px] font-normal text-[#222] leading-[24px] mb-[24px]">
             About Me
           </h1>
           {ABOUT_ME.trim().split('\n\n').map((paragraph, i, arr) => (

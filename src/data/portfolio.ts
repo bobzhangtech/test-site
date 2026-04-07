@@ -21,7 +21,7 @@ export interface SocialLink {
 export const OWNER_NAME = 'Bob'
 
 export const ABOUT_ME = `
-Hi, I'm Bob, welcome to my personal portfolio! I'm a programmer and software developer currently studying Computer Engineering at Queen's University.
+Hi, I'm Bob Zhang, welcome to my personal portfolio! I'm a programmer and software developer currently studying Computer Engineering at Queen's University.
 
 I enjoy building projects that solve real problems, and my ultimate goal in life is to create a software or hardware solution that benefits humanity. I work with Python, Java, and modern web technologies, and I'm always picking up new skills along the way.
 

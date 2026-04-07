@@ -52,7 +52,7 @@ Tools:      Git`
       return parts.slice(1).join(' ') || ''
     case 'sudo':
       if (parts.slice(1).join(' ') === 'hire-me') {
-        return `🎉 ${OWNER_NAME} would love to hear from you! Send an email to get started.`
+        return `🎉 ${OWNER_NAME} would love to hear from you! Send a message to get started.`
       }
       return `Password: Nice try! 😄`
     case 'cat':
