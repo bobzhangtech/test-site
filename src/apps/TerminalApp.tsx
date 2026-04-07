@@ -34,10 +34,10 @@ function processCommand(cmd: string): string {
     case 'projects':
       return PROJECTS.map((p) => `  📁 ${p.name} — ${p.techStack.join(', ')}`).join('\n')
     case 'skills':
-      return `Languages:  Python, Java, JavaScript, HTML, CSS
-Tools:      Git`
+      return `Languages:  Python, Java, HTML, CSS, JavaScript
+Tools:      Git, Linux, Local AI LLM Inference`
     case 'contact':
-      return SOCIAL_LINKS.map((l) => `  ${l.name}: ${l.url}`).join('\n')
+      return SOCIAL_LINKS.filter((l) => l.icon !== 'email').map((l) => `  ${l.name}: ${l.url}`).join('\n')
     case 'clear':
       return '__CLEAR__'
     case 'whoami':
@@ -61,14 +61,30 @@ Tools:      Git`
       }
       return `cat: ${parts[1] || ''}: No such file or directory`
     case 'neofetch':
-      return `       .:'          visitor@bobzhang
-   _ :'_           --------------------------
-.'\`_\`-'_\`\`.        OS: Mac OS X Lion (Web Edition)
-:________.-'        Shell: portfolio-sh 1.0
-:_______:           Theme: Aqua/Lion
- :_______\`-;       Terminal: TerminalApp.tsx
-  \`._.-._.'        CPU: Your Browser Engine
-                    Memory: A few DOM nodes`
+      {
+        const logo = [
+          " ____          ",
+          " |   \\         ",
+          " |   |         ",
+          " |___/         ",
+          " |   \\         ",
+          " |   |         ",
+          " |___/         ",
+          "               ",
+        ]
+        const info = [
+          "visitor@bobzhang",
+          "--------------------------",
+          "OS: Mac OS X Lion (Bob Edition)",
+          "Shell: bob-sh 1.0",
+          "Theme: Aqua/Lion",
+          "Terminal: TerminalApp.tsx",
+          "CPU: Your Browser Engine",
+          "Memory: A few DOM nodes",
+        ]
+        const pad = Math.max(...logo.map((l) => l.length))
+        return logo.map((l, i) => l.padEnd(pad) + (info[i] ?? '')).join('\n')
+      }
     case '':
       return ''
     default:

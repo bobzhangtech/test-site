@@ -7,8 +7,6 @@ const CATEGORIES = [
   { id: 'all', label: 'All Projects' },
   { id: 'web', label: 'Web Apps' },
   { id: 'cli', label: 'CLI Tools' },
-  { id: 'library', label: 'Libraries' },
-  { id: 'other', label: 'Other' },
 ]
 
 export default function FinderApp() {

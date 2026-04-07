@@ -47,6 +47,14 @@ export const PROJECTS: Project[] = [
     category: 'cli',
     githubUrl: 'https://www.github.com/bobzhangtech/stock-market-investment-assistant',
   },
+  {
+    id: 'project-3',
+    name: 'Canada Computers Price Tracker',
+    description: 'A price tracking tool for the Canadian PC hardware retailer Canada Computers. Enter product URLs at startup, and it automatically scrapes each product page every 4–8 hours, detects price increases and decreases, and stores price history in a local SQLite database.',
+    techStack: ['Python', 'SQLite', 'Web Scraping'],
+    category: 'cli',
+    githubUrl: 'https://www.github.com/bobzhangtech/canada-computers-price-tracker',
+  },
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -86,12 +94,12 @@ export const RESUME_CONTENT = {
         {
           title: 'Languages',
           subtitle: '',
-          description: 'Python, Java, JavaScript, HTML, CSS',
+          description: 'Python, Java, HTML, CSS, JavaScript',
         },
         {
           title: 'Tools',
           subtitle: '',
-          description: 'Git',
+          description: 'Git, Linux, Local AI LLM Inference',
         },
       ],
     },
