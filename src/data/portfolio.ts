@@ -37,22 +37,22 @@ export const PROJECTS: Project[] = [
     description: 'This very portfolio! A Mac OS X 10.7 Lion-themed interactive desktop experience built with React, TypeScript, and Tailwind CSS. The reason I designed my portfolio to resemble Mac OS X Lion is because it was the first operating system I ever used. Back in Christmas of 2011, my mother bought me an iMac, my first personal computer, which ran this OS. That experience sparked my lifelong passion for computers, programming, and technology, and set me on the path to software development. So in honor of my first computer, I decided to take this creative and unique route for my personal portfolio!',
     techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Zustand', 'Framer Motion'],
     category: 'web',
-    githubUrl: 'https://github.com/bobzhangtech/personal-portfolio',
+    githubUrl: 'https://www.github.com/bobzhangtech/personal-portfolio',
   },
   {
     id: 'project-2',
     name: 'Stock Market Investment Assistant',
     description: 'A CLI program that analyzes individual stock, ETF, or cryptocurrency ticker symbols using real-time financial data from Yahoo Finance via the yfinance Python library, then auto-runs a local AI model for inference to intelligently analyze the data and output investment advice.',
-    techStack: ['Python', 'yfinance', 'Local AI inference'],
+    techStack: ['Python', 'yfinance', 'Local AI Inference'],
     category: 'cli',
-    githubUrl: 'https://github.com/bobzhangtech/stock-market-investment-assistant',
+    githubUrl: 'https://www.github.com/bobzhangtech/stock-market-investment-assistant',
   },
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { name: 'GitHub', url: 'https://github.com/bobzhangtech', icon: 'github' },
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/bob', icon: 'linkedin' },
-  { name: 'X', url: 'https://x.com/bobzhangtech', icon: 'x' },
+  { name: 'GitHub', url: 'https://www.github.com/bobzhangtech', icon: 'github' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/bobzhangtech', icon: 'linkedin' },
+  { name: 'X', url: 'https://www.x.com/bobzhangtech', icon: 'x' },
   { name: 'Email', url: 'mailto:bob@example.com', icon: 'email' },
 ]
 
