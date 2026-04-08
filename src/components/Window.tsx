@@ -25,8 +25,8 @@ export default function Window({ windowState, children }: WindowProps) {
 
   // showWindow drives the animation target. When false, animate out.
   const [showWindow, setShowWindow] = useState(isVisible)
-  // mounted tracks if the window should be in the DOM at all
-  const [mounted, setMounted] = useState(isVisible)
+  // hidden tracks whether the exit animation has completed (used to hide via CSS instead of unmounting)
+  const [hidden, setHidden] = useState(!isVisible)
 
   const rndRef = useRef<Rnd | null>(null)
   const prevMaximized = useRef(isMaximized)
@@ -34,7 +34,7 @@ export default function Window({ windowState, children }: WindowProps) {
   // When visibility changes, update animation state
   useEffect(() => {
     if (isVisible) {
-      setMounted(true)
+      setHidden(false)
       // Small delay to ensure DOM is ready before animating in
       requestAnimationFrame(() => setShowWindow(true))
     } else {
@@ -57,7 +57,7 @@ export default function Window({ windowState, children }: WindowProps) {
 
   const handleExitComplete = () => {
     if (!isVisible) {
-      setMounted(false)
+      setHidden(true)
       if (!isOpen) removeWindow(id)
     }
   }
@@ -65,8 +65,6 @@ export default function Window({ windowState, children }: WindowProps) {
   const handleMouseDown = useCallback(() => {
     focusWindow(id)
   }, [id, focusWindow])
-
-  if (!mounted) return null
 
   return (
     <Rnd
@@ -88,6 +86,7 @@ export default function Window({ windowState, children }: WindowProps) {
         position: 'absolute',
         pointerEvents: showWindow ? 'auto' : 'none',
         transition: 'none',
+        visibility: hidden ? 'hidden' : 'visible',
       }}
       disableDragging={isMaximized}
       enableResizing={!isMaximized ? {
